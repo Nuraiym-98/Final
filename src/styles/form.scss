@@ -1,0 +1,30 @@
+.register{
+  background: #663333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.login{
+  background: #663333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+
+.form{
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+
+  &__title{
+    color: #663333;
+    font-weight: 700;
+  }
+}

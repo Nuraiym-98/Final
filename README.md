@@ -44,3 +44,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Dependencies
+
+`axios - для http запросов`
+`react-router-dom - для маршрутизации проекта`
+`redux-toolkit / react-redux - state managment = бизннес логика`
+`sass - для заданий стилей`
+`react-hook-form - для работы с формой`
+`material ui - для работы с ui компонентами`

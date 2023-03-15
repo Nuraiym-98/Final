@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Zhanybek",
+      "surname": "Adilov",
+      "age": 18,
+      "country": "Bishkek",
+      "phone": "0509313122",
+      "gender": "man"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+.header{
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  &__nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__right{
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+
+    &-list{
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+    }
+
+    &-item{
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+
+      &:hover{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+}
