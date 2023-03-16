@@ -6,6 +6,9 @@ import {AiFillEye} from 'react-icons/ai'
 import {AiFillEyeInvisible} from 'react-icons/ai'
 import axios from "../../utils/axios";
 import {useLocation, useNavigate,Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addUser} from "../../redux/reducers/user";
+import {AxiosResponse} from "axios";
 
 
 type formType = {
@@ -18,9 +21,14 @@ type formType = {
     phone: string,
     surname: string
 }
+type userType = {
+    user : formType
+}
 
 
 export const Form = () => {
+
+    const dispatch = useDispatch()
 
     const {pathname} = useLocation()
 
@@ -54,7 +62,8 @@ export const Form = () => {
         const {confirm, ...other } = data
 
         axios.post(`/register`, {...other})
-            .then(({data}) => {
+            .then(({data}: AxiosResponse<userType>) => {
+                dispatch(addUser(data))
                 reset()
                 alert("Аккаунт успешно зарегитрирован")
                 navigate('/')
@@ -68,7 +77,8 @@ export const Form = () => {
         const {confirm, ...other } = data
 
         axios.post(`/login`, {...other})
-            .then(({data}) => {
+            .then(({data}: AxiosResponse<userType>) => {
+                dispatch(addUser(data.user))
                 reset()
                 alert("Успешно зашел в аккаунт")
                 navigate('/')

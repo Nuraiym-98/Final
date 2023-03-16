@@ -18,16 +18,55 @@ export const Header = () => {
 
                     <div className="header__right">
                         <ul className="header__right-list">
-                            <li className="header__right-item">
+                            <Link to='/' className="header__right-item">
                                 Main
-                            </li>
+                            </Link>
 
                             <li className="header__right-item">
                                About us
+                                <ul className="header__right-item-pop">
+                                    <Link to={"/about"} className="header__right-item-li">
+                                        About restaurant
+                                    </Link>
+
+                                    <Link to="/store" className="header__right-item-li">
+                                        About store
+                                    </Link>
+                                </ul>
                             </li>
 
                             <li className="header__right-item">
                                 Catalogue
+
+                                <ul className="header__right-item-pop">
+                                    <li className="header__right-item-li">
+                                        Red wine
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        White wine
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Rose
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Champagne
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Port wine
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Sets
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        All wines
+                                    </li>
+                                </ul>
                             </li>
 
                             <li className="header__right-item">
@@ -36,6 +75,31 @@ export const Header = () => {
 
                             <li className="header__right-item">
                                 Wines origin
+                                <ul className="header__right-item-pop">
+                                    <li className="header__right-item-li">
+                                        French wines
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Italian wines
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Portuguese wines
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        Spanish wines
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        German wines
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        South Africa
+                                    </li>
+                                </ul>
                             </li>
 
                             <li className="header__right-item">
@@ -48,16 +112,30 @@ export const Header = () => {
 
                             <li className="header__right-item">
                                 Contacts
+                                <ul className="header__right-item-pop">
+                                    <li className="header__right-item-li">
+                                        +996 (707) 330 105
+                                    </li>
+
+                                    <li className="header__right-item-li">
+                                        +996 (770) 33 01 07
+                                    </li>
+
+
+                                    <li className="header__right-item-li">
+                                        Bishkek, Chui 140a
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
 
                         <ul className="header__right-list">
                             <li className="header__right-search">
-                                <BiSearchAlt size={25} fill="white"/>
+                                <BiSearchAlt size={25} fill="#663333"/>
                             </li>
 
                             <li className="header__right-search">
-                                <BsBagHeart size={25} fill="white"/>
+                                <BsBagHeart size={25} fill="#663333"/>
                             </li>
                         </ul>
                     </div>

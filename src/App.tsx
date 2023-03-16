@@ -1,5 +1,5 @@
-import {Suspense} from 'react';
-import {Route,Routes} from "react-router-dom";
+import {Suspense, useEffect} from 'react';
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 
 import './styles/styles.scss'
@@ -8,6 +8,8 @@ import {Layout} from "./Layout/Layout";
 import {Home} from './pages/Home/Home'
 import {Register} from "./pages/Register/Regiser";
 import {Login} from "./pages/Login/Login";
+import {About} from "./pages/About/About";
+import {Store} from "./pages/Store/Store";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/' element={<Layout/>}>
                 <Route path='' element={<Home/>}/>
+                <Route path='/about' element={<About/>}/>
+                <Route path='/store' element={<Store/>}/>
             </Route>
         </Routes>
 
