@@ -1,13 +1,34 @@
 {
   "users": [
     {
-      "id": 1,
+      "email": "asdaasad@asds.sad",
+      "password": "$2a$10$FGM6Bnc7AqPKSnxqynfPLeBkntTKLhxa63vrKyn9HDPrmtuGArevC",
+      "name": "sdfsfs",
+      "surname": "sdfsdfds",
+      "gender": "man",
+      "phone": "+996(123)13-12-33",
+      "agree": true,
+      "id": 1
+    },
+    {
+      "email": "ilias.paccan@list.ru",
+      "password": "$2a$10$wRIyq2xQkQXTurNv3Z6ZduDtVd1w/y1Th92CJiNJ4dNLOPRzDnkKS",
+      "name": "Ilias",
+      "surname": "Abdurahmanov",
+      "gender": "man",
+      "phone": "+996(509)22-22-22",
+      "agree": true,
+      "id": 2
+    },
+    {
+      "email": "joni.pacan@list.ru",
+      "password": "$2a$10$Xk2reBj8CmSiont.6Iz8Q.mOFiMMDjwrrUx2qqCVgnMbFfoMEiTPu",
       "name": "Zhanybek",
       "surname": "Adilov",
-      "age": 18,
-      "country": "Bishkek",
-      "phone": "0509313122",
-      "gender": "man"
+      "gender": "man",
+      "phone": "+996(509)31-13-22",
+      "agree": true,
+      "id": 3
     }
   ]
 }
