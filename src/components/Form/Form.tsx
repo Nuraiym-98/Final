@@ -10,23 +10,17 @@ import {useDispatch} from "react-redux";
 import {addUser} from "../../redux/reducers/user";
 import {AxiosResponse} from "axios";
 
+import {formType} from "../../App";
 
-type formType = {
-    agree: boolean,
-    confirm: string,
-    email: string,
-    gender: string,
-    name: string,
-    password: string,
-    phone: string,
-    surname: string
-}
-type userType = {
-    user : formType
-}
+import {userType} from "../../App";
+
+import { useToast } from '@chakra-ui/react'
 
 
 export const Form = () => {
+
+    const toast = useToast()
+
 
     const dispatch = useDispatch()
 
@@ -65,10 +59,26 @@ export const Form = () => {
             .then(({data}: AxiosResponse<userType>) => {
                 dispatch(addUser(data))
                 reset()
-                alert("Аккаунт успешно зарегитрирован")
+                toast({
+                    title: 'Account created',
+                    description: "We've created your account for you.",
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
                 navigate('/')
             })
-            .catch(err => alert(`Не удалось зарегестрировать аккаунт, ${err.message}`))
+            .catch(err => {
+                toast({
+                    title: "You cant registration",
+                    description: err.message,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
+            })
     }
     
 
@@ -80,10 +90,26 @@ export const Form = () => {
             .then(({data}: AxiosResponse<userType>) => {
                 dispatch(addUser(data.user))
                 reset()
-                alert("Успешно зашел в аккаунт")
+                toast({
+                    title: "Log in account",
+                    description: "We've log in your account",
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
                 navigate('/')
             })
-            .catch(err => alert(`Не удалось зайти в аккаунт, ${err.message}`))
+            .catch(err => {
+                toast({
+                    title: "You cant log in",
+                    description: err.message,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
+            })
     }
 
     const submit = (data : formType) => {

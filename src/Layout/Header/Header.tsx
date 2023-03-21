@@ -1,13 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-
-
-import {BiSearchAlt} from 'react-icons/bi'
 import {BsBagHeart} from 'react-icons/bs'
-
+import {BiLogOut} from 'react-icons/bi'
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../redux/reducers/user";
+import {useToast} from "@chakra-ui/react";
+import { Avatar } from '@chakra-ui/react'
+import { userType} from "../../App";
 
 
 export const Header = () => {
+    const toast = useToast()
+
+    const dispatch = useDispatch()
+
+    const {user}: any = useSelector<userType>(store => store.user)
+
+
+    const exit = () => {
+        dispatch(logout(''))
+        toast({
+            title: 'Success',
+            description: "You left acc",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-left',
+        })
+    }
+
     return (
         <header className="header">
             <div className="container">
@@ -102,13 +123,13 @@ export const Header = () => {
                                 </ul>
                             </li>
 
-                            <li className="header__right-item">
+                            <Link to='/delivery' className="header__right-item">
                                 Delivery
-                            </li>
+                            </Link>
 
-                            <li className="header__right-item">
+                            <Link to="/articles" className="header__right-item">
                                 Articles
-                            </li>
+                            </Link>
 
                             <li className="header__right-item">
                                 Contacts
@@ -121,7 +142,6 @@ export const Header = () => {
                                         +996 (770) 33 01 07
                                     </li>
 
-
                                     <li className="header__right-item-li">
                                         Bishkek, Chui 140a
                                     </li>
@@ -130,13 +150,26 @@ export const Header = () => {
                         </ul>
 
                         <ul className="header__right-list">
-                            <li className="header__right-search">
-                                <BiSearchAlt size={25} fill="#663333"/>
+
+
+                            <li className="header__right-item" style={{textDecoration: 'none'}}>
+                                <Avatar name={`${user.surname} ${user.name}`} />
+
+                                <ul className="header__right-item-pop" style={{transform: "translate(-200px,15px)", rowGap: '10px'}}>
+
+                                    <li className="header__right-item-li-ava">
+                                        <BsBagHeart size={25} fill="#663333" style={{transform: "translateY(-2px)"}}/>
+                                        Basket
+                                        <span className="header__right-item-li-ava-right">1</span>
+                                    </li>
+
+                                    <li className="header__right-item-li-ava" onClick={exit}>
+                                        <BiLogOut size={25} fill="#663333" style={{transform: "rotate(180deg)"}}/>
+                                        logout
+                                    </li>
+                                </ul>
                             </li>
 
-                            <li className="header__right-search">
-                                <BsBagHeart size={25} fill="#663333"/>
-                            </li>
                         </ul>
                     </div>
                 </nav>

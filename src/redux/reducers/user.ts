@@ -1,31 +1,21 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
+import {useToast} from "@chakra-ui/react";
 
-type formType = {
-    agree: boolean,
-    confirm: string,
-    email: string,
-    gender: string,
-    name: string,
-    password: string,
-    phone: string,
-    surname: string
-}
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        data: [],
-        filter: {},
-        error: '',
-        status: ''
+        user: ''
     },
     reducers: {
         addUser: (state,action) => {
-            state.data = action.payload
+            state.user = action.payload
+        },
+        logout: (state,action) => {
+            state.user = action.payload
         }
-    },
-    extraReducers: {},
+    }
 })
 
-export const {addUser} = userSlice.actions
+export const {addUser,logout} = userSlice.actions
 export default userSlice.reducer

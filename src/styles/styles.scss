@@ -19,7 +19,7 @@ body{
 .container{
   width: 100%;
   max-width: 1360px;
-  padding: 20px 0;
+  padding: 0 10px;
   margin: 0 auto;
 }
 
@@ -34,3 +34,9 @@ button{
 @import "form";
 @import "footer";
 @import "about";
+@import "delivery";
+@import "articles";
+@import "cozy";
+@import "love";
+@import "red";
+@import "card";

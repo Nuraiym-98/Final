@@ -29,6 +29,86 @@
       "phone": "+996(509)31-13-22",
       "agree": true,
       "id": 3
+    },
+    {
+      "email": "joasdasd@asda.as",
+      "password": "$2a$10$zVEjDJ2Wi4cYP38vC9R4GOTWd.WtRrLQ/W0t9Vy6oK9MUe3pe6WcW",
+      "name": "Sultan",
+      "surname": "Abdurahmanov",
+      "gender": "man",
+      "phone": "+996(554)55-55-55",
+      "agree": true,
+      "id": 4
+    }
+  ],
+  "wines": [
+    {
+      "id": 1,
+      "category": "red",
+      "name": "Cincuenta",
+      "price": 1600,
+      "region": "Rioja DOC",
+      "producer": " Eguren-Ugarte",
+      "year": 2015,
+      "alc": 14.5,
+      "grape": "Tempranillo",
+      "country": "Spain",
+      "dry": "Dry",
+      "description": "Vitorino Eguren refers to the years of love and youth with «Cuarenta» (40), his «Cincuenta» (50) celebrates his working anniversary and «Ochenta» (80) his eightieth birthday. All wines are unfiltered, «Ochenta» comes from a single location with old vineyards",
+      "bought": 0,
+      "review": [],
+      "rating": 0
+    },
+    {
+      "id": 2,
+      "category": "red",
+      "name": "Crasto Red",
+      "price": 1800,
+      "region": "Douro DOC",
+      "producer": "Quinta do Crasto",
+      "year": 2019,
+      "alc": 14.0,
+      "grape": "Tinta Barroca",
+      "country": "Portugal",
+      "dry": "Dry",
+      "description": "",
+      "bought": 0,
+      "review": [],
+      "rating": 0
+    },
+    {
+      "id": 3,
+      "category": "red",
+      "name": "Crasto Superior Red",
+      "price": 1990,
+      "region": "Douro DOC",
+      "producer": "Quinta do Crasto",
+      "year": 2016,
+      "alc": 13.5,
+      "grape": "Touriga Franca",
+      "country": "Portugal",
+      "dry": "Dry",
+      "description": "Very complex notes of dark berried fruits, gum cistus and cocoa lingering towards the elegant finish.Excellent length. Crasto Superior Red is fresh and balanced on the nose. Fresh on the palate, great body and ripe firm tannins.",
+      "bought": 0,
+      "review": [],
+      "rating": 0
+    },
+    {
+      "id": 4,
+      "category": "red",
+      "name": "Cuarenta",
+      "price": 1300,
+      "region": "Rioja DOC",
+      "producer": "Eguren-Ugarte",
+      "year": 2017,
+      "alc": 14.0,
+      "grape": "Tempranillo",
+      "country": "Spain",
+      "dry": "Dry",
+      "description": "Vitorino Eguren refers to the years of love and youth with «Cuarenta» (40), his «Cincuenta» (50) celebrates his working anniversary and «Ochenta» (80) his eightieth birthday. All wines are unfiltered, «Ochenta» comes from a single location with old vineyards",
+      "bought": 0,
+      "review": [],
+      "rating": 0
     }
   ]
 }
