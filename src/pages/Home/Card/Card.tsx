@@ -29,7 +29,7 @@ export const Card = () => {
                         </span>
                     </Link>
 
-                    <div className="card__left card__right">
+                    <Link to="/tasting" className="card__left card__right">
                         <h2 className="card__left-title card__right-title">
                             Wines
                         </h2>
@@ -48,7 +48,7 @@ export const Card = () => {
                             Read more
                             <BsArrowRightCircleFill  fill="#784b4b" className="card__left-icon card__right-icon"/>
                         </span>
-                    </div>
+                    </Link>
 
                 </div>
             </div>

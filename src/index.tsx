@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import store,{persistor} from "./redux/redux";
-import {PersistGate} from "redux-persist/integration/react"
-import {Preloader} from "./pages/Preloader/Preloader";
+import store from "./redux/redux";
 import {ChakraProvider} from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(
@@ -16,9 +14,7 @@ root.render(
     <ChakraProvider>
         <BrowserRouter>
             <Provider store={store}>
-                <PersistGate loading={<Preloader/>} persistor={persistor}>
-                    <App/>
-                </PersistGate>
+                <App/>
             </Provider>
         </BrowserRouter>
     </ChakraProvider>

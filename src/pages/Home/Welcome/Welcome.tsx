@@ -5,6 +5,7 @@ import {FaFacebookSquare} from 'react-icons/fa'
 import {AiOutlineWhatsApp} from 'react-icons/ai'
 
 const Welcome = () => {
+
     return (
         <section className="welcome">
             <div className="container">
@@ -13,7 +14,7 @@ const Welcome = () => {
                         Welcome to
                     </p>
                     <p className="welcome__centre-title">
-                        VinoTeka
+                        <img style={{borderBottom: "5px solid white", paddingBottom: "15px"}} src="https://i0.wp.com/vinotekashop.com/wp-content/uploads/2019/03/logo-vinoteka-white.png?w=1414&ssl=1"/>
                     </p>
 
                     <p className="welcome__centre-bottom">

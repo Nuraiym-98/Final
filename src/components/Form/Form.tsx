@@ -9,18 +9,17 @@ import {useLocation, useNavigate,Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addUser} from "../../redux/reducers/user";
 import {AxiosResponse} from "axios";
-
-import {formType} from "../../App";
-
-import {userType} from "../../App";
-
 import { useToast } from '@chakra-ui/react'
+
+
+import {formType} from "../../models/models";
+
+import {userType} from "../../models/models";
 
 
 export const Form = () => {
 
     const toast = useToast()
-
 
     const dispatch = useDispatch()
 
@@ -56,8 +55,12 @@ export const Form = () => {
         const {confirm, ...other } = data
 
         axios.post(`/register`, {...other})
-            .then(({data}: AxiosResponse<userType>) => {
-                dispatch(addUser(data))
+            .then((res: AxiosResponse<any>) => {
+                localStorage.setItem('user',JSON.stringify({
+                    token: res.data.accessToken,
+                    ...res.data.user
+                }))
+                dispatch(addUser(res.data))
                 reset()
                 toast({
                     title: 'Account created',
@@ -87,8 +90,12 @@ export const Form = () => {
         const {confirm, ...other } = data
 
         axios.post(`/login`, {...other})
-            .then(({data}: AxiosResponse<userType>) => {
-                dispatch(addUser(data.user))
+            .then((res: AxiosResponse<any>) => {
+                localStorage.setItem('user',JSON.stringify({
+                    token: res.data.accessToken,
+                    ...res.data.user
+                }))
+                dispatch(addUser(res.data.user))
                 reset()
                 toast({
                     title: "Log in account",

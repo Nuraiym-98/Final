@@ -1,6 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {useToast} from "@chakra-ui/react";
-
 
 const userSlice = createSlice({
     name: 'user',

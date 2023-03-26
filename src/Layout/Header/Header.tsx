@@ -6,19 +6,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../redux/reducers/user";
 import {useToast} from "@chakra-ui/react";
 import { Avatar } from '@chakra-ui/react'
-import { userType} from "../../App";
-
 
 export const Header = () => {
+
     const toast = useToast()
 
     const dispatch = useDispatch()
 
-    const {user}: any = useSelector<userType>(store => store.user)
+    const user: any = useSelector<any>(store => store.user)
 
 
     const exit = () => {
         dispatch(logout(''))
+        localStorage.removeItem('user')
         toast({
             title: 'Success',
             description: "You left acc",
@@ -56,7 +56,7 @@ export const Header = () => {
                                 </ul>
                             </li>
 
-                            <li className="header__right-item">
+                            <Link to="/catalog" className="header__right-item">
                                 Catalogue
 
                                 <ul className="header__right-item-pop">
@@ -88,7 +88,7 @@ export const Header = () => {
                                         All wines
                                     </li>
                                 </ul>
-                            </li>
+                            </Link>
 
                             <li className="header__right-item">
                                 Accessories
@@ -153,18 +153,24 @@ export const Header = () => {
 
 
                             <li className="header__right-item" style={{textDecoration: 'none'}}>
-                                <Avatar name={`${user.surname} ${user.name}`} />
+                                <Avatar name={`${user.user.surname} ${user.user.name}`} />
 
                                 <ul className="header__right-item-pop" style={{transform: "translate(-200px,15px)", rowGap: '10px'}}>
 
                                     <li className="header__right-item-li-ava">
-                                        <BsBagHeart size={25} fill="#663333" style={{transform: "translateY(-2px)"}}/>
+                                        <span className="header__right-item-li-icon">
+                                            <BsBagHeart size={25} fill="#663333" style={{transform: "translateY(-2px)"}}/>
+                                        </span>
                                         Basket
                                         <span className="header__right-item-li-ava-right">1</span>
                                     </li>
 
                                     <li className="header__right-item-li-ava" onClick={exit}>
-                                        <BiLogOut size={25} fill="#663333" style={{transform: "rotate(180deg)"}}/>
+                                        <span className="header__right-item-li-icon">
+                                        <BiLogOut size={25} fill="#663333"
+                                                  style={{
+                                                      transform: "rotate(180deg) translateX(-3px)",}}/>
+                                        </span>
                                         logout
                                     </li>
                                 </ul>

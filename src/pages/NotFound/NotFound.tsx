@@ -1,16 +1,13 @@
 import React from "react";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {userType} from "../../App";
-
+import {userType} from "../../models/models";
 
 export const NotFound = () => {
 
-    const navigate = useNavigate()
-
     const {user}: any = useSelector<userType>(store => store.user)
 
-    if(user === '') {
+    if(user.length === 0){
         return <Navigate to='/login'/>
     }
 

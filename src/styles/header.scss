@@ -6,6 +6,7 @@
   filter: drop-shadow(5px 5px 3px grey);
 
 
+
   &__nav{
     display: flex;
     align-items: center;
@@ -71,6 +72,16 @@
         padding: 5px 10px;
         border-radius: 10px;
 
+        &-icon{
+          background-color: white;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
         &-ava{
           padding: 5px;
           color: #663333;
@@ -79,6 +90,11 @@
           column-gap: 10px;
           border-radius: 10px;
           position: relative;
+
+
+          //&:hover .header__right-item-li-icon{
+          //  fill: white;
+          //}
 
           &-right{
             position: absolute;

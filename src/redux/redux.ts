@@ -1,37 +1,13 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import user from "./reducers/user";
-import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-
-
-const rootReducer = combineReducers({
-    user:user
-})
-
-const persistConfig = {
-    key: 'root',
-    storage,
-}
-
-const persistedReducer = persistReducer(persistConfig,rootReducer)
+import {wineSlice} from "./reducers/wines";
 
 const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
+    reducer: {
+        user: user,
+        [wineSlice.reducerPath]: wineSlice.reducer
+    },
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(wineSlice.middleware)
 })
 
-export const persistor = persistStore(store)
 export default store

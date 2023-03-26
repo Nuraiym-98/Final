@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 export const Cozy = () => {
 
     return(
-        <section className="cozy">
+        <section className="cozy" id="#about">
             <div className="container">
                 <div className="cozy__content">
                     <div className="cozy__left">

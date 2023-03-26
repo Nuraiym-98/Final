@@ -11,6 +11,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    row-gap: 10px;
     width: 700px;
     height: 700px;
     position: absolute;
@@ -23,10 +24,9 @@
     }
 
     &-title{
-      font-size: 130px;
       text-decoration: 5px underline white;
       text-underline-offset: 15px;
-
+      width: 550px;
     }
 
     &-bottom{
