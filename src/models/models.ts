@@ -30,7 +30,7 @@ export type typeLocalUser = {
 }
 
 export type winesType =  {
-    "id": number,
+    "id": number | null,
     "image": string,
     "category": string,
     "name": string,

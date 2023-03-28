@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 html{
   scroll-behavior: smooth;
 }
@@ -14,7 +14,7 @@ html{
   transition: .5s all;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  color: white;
+  color: black;
 }
 
 body{
@@ -49,3 +49,4 @@ button{
 @import "popular";
 @import "last";
 @import "catalog";
+@import "detail";

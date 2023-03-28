@@ -1,11 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Card} from "../../components/Card/Card";
-import {useGetWinesQuery} from "../../redux/reducers/wines";
+import {useAboutWinesQuery, useGetWinesQuery} from "../../redux/reducers/wines";
+import {useDebounce} from "../../hooks/debounce";
+import {winesType} from "../../models/models";
 
 
 export const Catalog = () => {
 
-    const {isLoading, isError, data} = useGetWinesQuery('')
+    const [search,setSearch] = useState('')
+
+    const debounced = useDebounce(search)
+
+    const {data: wines, isLoading}= useGetWinesQuery()
+
+    console.log(wines)
+    // const {isLoading, data} = useSearchNameQuery(debounced, {
+    //     skip: debounced.length < 3
+    // })
+    //
+    // console.log(data)
+    //
+    // useEffect(() => {
+    //     console.log(debounced)
+    // },[debounced])
 
     return(
         <section className="catalog">
@@ -23,15 +40,14 @@ export const Catalog = () => {
                         <li className="catalog__nav-left">Main </li>
                     </ul>
                     <p className="catalog__nav-left">
-                        Display 12-24 of 80
+                        Display 12-24 of {wines?.length}
                     </p>
                 </div>
-
 
                 <div className="catalog__content">
                     <aside className="catalog__content-aside">
                         <label className="catalog__content-aside-label">
-                            <input className="catalog__content-aside-input" type="text" placeholder="Search by name"/>
+                            <input value={search} onChange={(e) => setSearch(e.target.value)} className="catalog__content-aside-input" type="text" placeholder="Search by name"/>
                         </label>
 
 
@@ -40,7 +56,7 @@ export const Catalog = () => {
                                 <option className="catalog__content-aside-option" value='all'>Sort by category</option>
 
                                 {
-                                    data?.map(item => (
+                                    wines?.map(item => (
                                         <option className="catalog__content-aside-option" key={item.id} value={item.category}>{item.category}</option>
                                     ))
                                 }
@@ -65,7 +81,7 @@ export const Catalog = () => {
                                 <option className="catalog__content-aside-option" value='all'>Sort by country</option>
 
                                 {
-                                    data?.map(item => (
+                                    wines?.map(item => (
                                         <option className="catalog__content-aside-option" key={item.id} value={item.country}>{item.country}</option>
                                     ))
                                 }
@@ -76,8 +92,9 @@ export const Catalog = () => {
                     </aside>
 
                     <div className="catalog__content-right">
+                        {isLoading && <p>...Loading</p>}
                         {
-                            data?.map(item => (
+                            wines?.map((item,idx) => (
                                 <Card key={item.id} item={item}/>
                             ))
                         }

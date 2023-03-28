@@ -8,4 +8,14 @@
   font-size: 50px;
   color: white;
   font-weight: 900;
+
+  &__img{
+
+    &.active{
+      border-radius: 50%;
+      border: 70px solid yellow;
+      transition: 1s;
+      transform: scale(0.001);
+    }
+  }
 }

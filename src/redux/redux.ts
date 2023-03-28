@@ -1,6 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import user from "./reducers/user";
 import {wineSlice} from "./reducers/wines";
+import {setupListeners} from "@reduxjs/toolkit/query";
 
 const store = configureStore({
     reducer: {
@@ -11,3 +12,6 @@ const store = configureStore({
 })
 
 export default store
+
+setupListeners(store.dispatch)
+

@@ -1,5 +1,5 @@
-import {Suspense, useEffect} from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Suspense, useEffect, useState} from 'react';
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 import './styles/styles.scss'
 import {Preloader} from "./pages/Preloader/Preloader";
@@ -17,11 +17,14 @@ import {Tasting} from "./pages/Tasting/Tasting";
 import {Catalog} from "./pages/Catalog/Catalog";
 import {typeLocal, typeLocalUser} from "./models/models";
 import {addUser} from "./redux/reducers/user";
+import {AboutWine} from "./components/AboutWine/AboutWine";
 
 
 function App() {
 
     const dispatch = useDispatch()
+
+    const navigate = useNavigate()
 
     const {user}: any = useSelector<typeLocalUser>(store => store.user)
 
@@ -29,11 +32,14 @@ function App() {
         dispatch(addUser(JSON.parse(localStorage.getItem('user') || '{}')))
     },[])
 
-    // console.log(JSON.parse(localStorage.getItem('user') || '{}'))
+
+    useEffect(() => {
+        navigate('/preloader')
+    },[])
 
 
     return (
-    <Suspense fallback={<Preloader/>}>
+    <Suspense>
         {
             user.length === 0 ?
                 <Routes>
@@ -43,6 +49,7 @@ function App() {
                 </Routes> :
 
                 <Routes>
+                    {/*<Route path='/preloader' element={<Preloader/>}/>*/}
                     <Route path='/' element={<Layout/>}>
                         <Route path='' element={<Home/>}/>
                         <Route path='/about' element={<About/>}/>
@@ -51,6 +58,7 @@ function App() {
                         <Route path='/articles' element={<Articles/>}/>
                         <Route path='/tasting' element={<Tasting/>}/>
                         <Route path='/catalog' element={<Catalog/>}/>
+                        <Route path='/aboutWine/:id' element={<AboutWine/>}/>
                         <Route path="*" element={<NotFound/>}/>
                     </Route>
                 </Routes>

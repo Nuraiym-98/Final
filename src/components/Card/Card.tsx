@@ -1,13 +1,14 @@
 import React from "react";
 import {propsWine, winesType} from "../../models/models";
+import {Link} from "react-router-dom";
 
 
 
-export const Card = (props: propsWine) => {
+export const Card = (props: propsWine ) => {
 
 
     return(
-        <div className="cards">
+        <Link to={`/aboutWine/${props.item.id}`} className="cards">
             <div className="cards__bg"
             style={{background: `url("${props.item.image}") center/cover no-repeat`}}>
                 <p className="cards__bg-text">
@@ -31,6 +32,6 @@ export const Card = (props: propsWine) => {
                     </p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
