@@ -1,11 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {BsBagHeart} from 'react-icons/bs'
 import {BiLogOut} from 'react-icons/bi'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {logout} from "../../redux/reducers/user";
 import {useToast} from "@chakra-ui/react";
 import { Avatar } from '@chakra-ui/react'
+import {useAppSelector} from "../../hooks/hooksRedux";
+import {AiOutlineUser} from "react-icons/ai";
+
 
 export const Header = () => {
 
@@ -13,8 +16,11 @@ export const Header = () => {
 
     const dispatch = useDispatch()
 
-    const user: any = useSelector<any>(store => store.user)
+    const {pathname} = useLocation()
 
+    const navigate = useNavigate()
+
+    const {user}: any = useAppSelector(store => store.userReducer)
 
     const exit = () => {
         dispatch(logout(''))
@@ -27,6 +33,18 @@ export const Header = () => {
             isClosable: true,
             position: 'top-left',
         })
+    }
+
+    const scrollToAbout = () => {
+        if(pathname === '/'){
+            window.scrollTo(0, 2210);
+        }
+        if(pathname !== '/'){
+            navigate('/')
+            setTimeout(() => {
+                window.scrollTo(0, 2210);
+            },500)
+        }
     }
 
     return (
@@ -43,7 +61,7 @@ export const Header = () => {
                                 Main
                             </Link>
 
-                            <li className="header__right-item">
+                            <li className="header__right-item" onClick={scrollToAbout}>
                                About us
                                 <ul className="header__right-item-pop">
                                     <Link to={"/about"} className="header__right-item-li">
@@ -58,69 +76,10 @@ export const Header = () => {
 
                             <Link to="/catalog" className="header__right-item">
                                 Catalogue
-
-                                <ul className="header__right-item-pop">
-                                    <li className="header__right-item-li">
-                                        Red wine
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        White wine
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Rose
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Champagne
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Port wine
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Sets
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        All wines
-                                    </li>
-                                </ul>
                             </Link>
 
                             <li className="header__right-item">
                                 Accessories
-                            </li>
-
-                            <li className="header__right-item">
-                                Wines origin
-                                <ul className="header__right-item-pop">
-                                    <li className="header__right-item-li">
-                                        French wines
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Italian wines
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Portuguese wines
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        Spanish wines
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        German wines
-                                    </li>
-
-                                    <li className="header__right-item-li">
-                                        South Africa
-                                    </li>
-                                </ul>
                             </li>
 
                             <Link to='/delivery' className="header__right-item">
@@ -147,23 +106,37 @@ export const Header = () => {
                                     </li>
                                 </ul>
                             </li>
+                            <Link to="/review" className="header__right-item">
+                                Review
+                            </Link>
                         </ul>
 
                         <ul className="header__right-list">
 
 
                             <li className="header__right-item" style={{textDecoration: 'none'}}>
-                                <Avatar name={`${user.user.surname} ${user.user.name}`} />
+                                <Avatar bg='#663333' icon={<AiOutlineUser fontSize='2rem' />} />
 
                                 <ul className="header__right-item-pop" style={{transform: "translate(-200px,15px)", rowGap: '10px'}}>
 
-                                    <li className="header__right-item-li-ava">
+                                    <li className="header__right-item-li-ava" style={{
+                                        display: 'flex',
+                                        justifyContent: "center",
+                                        backgroundColor: "#663333",
+                                        color: "white"
+                                    }}>
+                                        {
+                                            `${user?.name} ${user?.surname}`
+                                        }
+                                    </li>
+
+                                    <Link to="/basket" className="header__right-item-li-ava">
                                         <span className="header__right-item-li-icon">
                                             <BsBagHeart size={25} fill="#663333" style={{transform: "translateY(-2px)"}}/>
                                         </span>
                                         Basket
                                         <span className="header__right-item-li-ava-right">1</span>
-                                    </li>
+                                    </Link>
 
                                     <li className="header__right-item-li-ava" onClick={exit}>
                                         <span className="header__right-item-li-icon">

@@ -14,7 +14,7 @@ html{
   transition: .5s all;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  color: black;
+  color: white;
 }
 
 body{
@@ -50,3 +50,4 @@ button{
 @import "last";
 @import "catalog";
 @import "detail";
+@import "review";

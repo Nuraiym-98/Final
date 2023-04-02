@@ -40,6 +40,11 @@
       row-gap: 25px;
       border-radius: 10px;
 
+      &-option{
+        color: #663333;
+        font-weight: 700;
+      }
+
       &-label{
         display: flex;
         flex-direction: column;

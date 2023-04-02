@@ -1,12 +1,23 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {formType} from "../../models/models";
 
-const userSlice = createSlice({
+interface UserState {
+    user: formType | any;
+    isLoading: boolean;
+    error: string;
+}
+
+const initialState: UserState = {
+    user: '',
+    isLoading: false,
+    error: ''
+}
+
+export const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        user: ''
-    },
+    initialState,
     reducers: {
-        addUser: (state,action) => {
+        increment(state,action: PayloadAction<formType>){
             state.user = action.payload
         },
         logout: (state,action) => {
@@ -15,5 +26,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {addUser,logout} = userSlice.actions
+export const {logout} = userSlice.actions
 export default userSlice.reducer

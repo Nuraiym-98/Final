@@ -6,10 +6,18 @@ import {BsTelephoneInbound} from "react-icons/bs";
 import {ImLocation} from "react-icons/im";
 import {BiRestaurant} from "react-icons/bi";
 import {BiWine} from "react-icons/bi";
+import {BiArrowToTop} from "react-icons/bi"
 
 export const Footer = () => {
+
     return (
         <section className="footer">
+
+            <div className="footer__scroll" onClick={() => window.scrollTo(0, 0)}>
+                <BiArrowToTop size={40} fill="white"/>
+            </div>
+
+
             <div className="container">
                 <nav className="footer__nav">
 

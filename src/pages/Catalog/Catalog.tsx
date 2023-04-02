@@ -1,28 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, {useRef, useState} from "react";
 import {Card} from "../../components/Card/Card";
-import {useAboutWinesQuery, useGetWinesQuery} from "../../redux/reducers/wines";
 import {useDebounce} from "../../hooks/debounce";
-import {winesType} from "../../models/models";
+import {winesApi} from "../../redux/reducers/wines";
+import {useParams} from "react-router-dom";
+
+const categoryWine = ['Red',"White","Rose","Champagne","Sweet"]
+const countyWine = ['France',"Italy","South-Africa","Germany","Portugal","Spain"]
 
 
 export const Catalog = () => {
 
     const [search,setSearch] = useState('')
-
+    const [category,setCategory] = useState('All')
+    const [sort,setSort] = useState('All')
+    const [country,setCountry] = useState('All')
     const debounced = useDebounce(search)
 
-    const {data: wines, isLoading}= useGetWinesQuery()
+    const filter = `${debounced !== ''? `name_like=${debounced}&` : '&'}${category !== 'All'? `category=${category}&` : '&'}${sort !== 'All'? `${sort}&` : '&'}${country !== 'All' ? `country=${country}&`: '&'}`
 
-    console.log(wines)
-    // const {isLoading, data} = useSearchNameQuery(debounced, {
-    //     skip: debounced.length < 3
-    // })
-    //
-    // console.log(data)
-    //
-    // useEffect(() => {
-    //     console.log(debounced)
-    // },[debounced])
+    const {data: wines, error, isLoading} = winesApi.useFetchAllWinesQuery(filter)
 
     return(
         <section className="catalog">
@@ -37,11 +33,7 @@ export const Catalog = () => {
                         <li className="catalog__nav-left">{'>'}</li>
                         <li className="catalog__nav-left">Shop</li>
                         <li className="catalog__nav-left">{'>'}</li>
-                        <li className="catalog__nav-left">Main </li>
                     </ul>
-                    <p className="catalog__nav-left">
-                        Display 12-24 of {wines?.length}
-                    </p>
                 </div>
 
                 <div className="catalog__content">
@@ -50,39 +42,35 @@ export const Catalog = () => {
                             <input value={search} onChange={(e) => setSearch(e.target.value)} className="catalog__content-aside-input" type="text" placeholder="Search by name"/>
                         </label>
 
-
                         <div className="catalog__content-aside-label">
-                            <select className="catalog__content-aside-select">
-                                <option className="catalog__content-aside-option" value='all'>Sort by category</option>
+                            <select className="catalog__content-aside-select" onChange={(e) => setCategory(e.target.value)}>
+                                <option className="catalog__content-aside-option" value='All' defaultChecked={true}>Sort by category: All</option>
 
                                 {
-                                    wines?.map(item => (
-                                        <option className="catalog__content-aside-option" key={item.id} value={item.category}>{item.category}</option>
+                                    categoryWine.map(item => (
+                                        <option className="catalog__content-aside-option" key={item} value={item}>{item}</option>
                                     ))
                                 }
                             </select>
                         </div>
 
-
                         <div className="catalog__content-aside-label">
-                            <select className="catalog__content-aside-select">
-                                <option className="catalog__content-aside-option" value='all'>Default sort</option>
-                                <option className="catalog__content-aside-option" value=''>Sort by popularity</option>
-                                <option className="catalog__content-aside-option" value=''>Sort by rating</option>
-                                <option className="catalog__content-aside-option" value=''>Prices: on an increase</option>
-                                <option className="catalog__content-aside-option" value=''>Prices: descending</option>
-                                <option className="catalog__content-aside-option" value=''>sorting by reviews</option>
+                            <select className="catalog__content-aside-select" onChange={(e) => setSort(e.target.value)}>
+                                <option className="catalog__content-aside-option" value='all' defaultChecked>Default sort</option>
+                                <option className="catalog__content-aside-option" value='_sort=bought&_order=desc'>Sort by popularity</option>
+                                <option className="catalog__content-aside-option" value='_sort=rating&_order=desc'>Sort by rating</option>
+                                <option className="catalog__content-aside-option" value='_sort=price&_order=desc'>Prices: on an increase</option>
+                                <option className="catalog__content-aside-option" value='_sort=price&_order=asc'>Prices: descending</option>
                             </select>
                         </div>
 
 
                         <div className="catalog__content-aside-label">
-                            <select className="catalog__content-aside-select">
-                                <option className="catalog__content-aside-option" value='all'>Sort by country</option>
-
+                            <select className="catalog__content-aside-select" onChange={(e) => setCountry(e.target.value)}>
+                                <option className="catalog__content-aside-option" value='All'>Sort by country : All</option>
                                 {
-                                    wines?.map(item => (
-                                        <option className="catalog__content-aside-option" key={item.id} value={item.country}>{item.country}</option>
+                                    countyWine.map(item => (
+                                        <option className="catalog__content-aside-option" key={item} value={item}>{item}</option>
                                     ))
                                 }
                             </select>
@@ -92,11 +80,18 @@ export const Catalog = () => {
                     </aside>
 
                     <div className="catalog__content-right">
-                        {isLoading && <p>...Loading</p>}
+
                         {
-                            wines?.map((item,idx) => (
-                                <Card key={item.id} item={item}/>
-                            ))
+
+                            isLoading ?
+                                <img style={{transform: 'translate(100px, 50px)'}}
+                                     src="https://cdn.dribbble.com/users/2762516/screenshots/14914852/media/40372a750de9d71d52b8e08b95215f7b.gif" alt=""/>
+                                : error ? <img style={{transform: 'translate(100px, 50px)'}}
+                                                  src="https://media.tenor.com/i27B-Xj0CSQAAAAC/welcome-to-the-club-buddy-butt-slap.gif" alt=""/> :
+                                    wines && wines
+                                        .map((wines) => (
+                                            <Card key={wines.id} wines={wines}/>
+                                        )).reverse()
                         }
                     </div>
                 </div>

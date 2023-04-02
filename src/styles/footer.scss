@@ -4,6 +4,21 @@
   position: relative;
 
 
+  &__scroll{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: #663333;
+    width: 60px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+
   &::before {
     content: '';
     width: 100%;

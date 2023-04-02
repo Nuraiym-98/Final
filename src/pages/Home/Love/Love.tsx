@@ -4,7 +4,7 @@ export const Love = () => {
     return (
         <section className="love">
             <div className="container">
-                <h2 className="love__title">
+                <h2 className="love__title" style={{color: "#252125",fontWeight: '900'}}>
                     People love us, because...
                 </h2>
 

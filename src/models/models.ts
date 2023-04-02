@@ -1,4 +1,5 @@
 export type formType = {
+    id: number
     agree: boolean,
     confirm: string,
     email: string,
@@ -44,12 +45,21 @@ export type winesType =  {
     "dry": string,
     "description": string,
     "bought": number,
-    "review": Array<any>,
-    "rating": number
+    "review": any,
+    "rating": number[]
 }
 
 export type propsWine = {
     item: winesType
+}
+
+export type reviewType = {
+    "id": string,
+    "name": string,
+    "surname": string,
+    "rating": number,
+    "text": string
+    "data": number
 }
 
 

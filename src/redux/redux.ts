@@ -1,17 +1,25 @@
-import {configureStore} from "@reduxjs/toolkit";
-import user from "./reducers/user";
-import {wineSlice} from "./reducers/wines";
-import {setupListeners} from "@reduxjs/toolkit/query";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import userReducer from './reducers/user'
+import {winesApi} from "./reducers/wines";
+import {reviewApi} from "./reducers/review";
 
-const store = configureStore({
-    reducer: {
-        user: user,
-        [wineSlice.reducerPath]: wineSlice.reducer
-    },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(wineSlice.middleware)
+
+const rootReducer = combineReducers({
+    userReducer,
+    [winesApi.reducerPath]: winesApi.reducer,
+    [reviewApi.reducerPath]: reviewApi.reducer
 })
 
-export default store
+export const setupStore = () => {
+    return configureStore({
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(winesApi.middleware)
+                .concat(reviewApi.middleware)
+    })
+}
 
-setupListeners(store.dispatch)
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
 

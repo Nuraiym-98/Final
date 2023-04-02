@@ -6,24 +6,25 @@ import {AiFillEye} from 'react-icons/ai'
 import {AiFillEyeInvisible} from 'react-icons/ai'
 import axios from "../../utils/axios";
 import {useLocation, useNavigate,Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {addUser} from "../../redux/reducers/user";
+
 import {AxiosResponse} from "axios";
 import { useToast } from '@chakra-ui/react'
 
 
 import {formType} from "../../models/models";
-
-import {userType} from "../../models/models";
+import {useAppDispatch} from "../../hooks/hooksRedux";
+import {userSlice} from "../../redux/reducers/user";
 
 
 export const Form = () => {
 
     const toast = useToast()
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const {pathname} = useLocation()
+
+    const {increment} = userSlice.actions
 
     const navigate = useNavigate()
 
@@ -60,7 +61,7 @@ export const Form = () => {
                     token: res.data.accessToken,
                     ...res.data.user
                 }))
-                dispatch(addUser(res.data))
+                dispatch(increment(res.data))
                 reset()
                 toast({
                     title: 'Account created',
@@ -95,7 +96,7 @@ export const Form = () => {
                     token: res.data.accessToken,
                     ...res.data.user
                 }))
-                dispatch(addUser(res.data.user))
+                dispatch(increment(res.data.user))
                 reset()
                 toast({
                     title: "Log in account",

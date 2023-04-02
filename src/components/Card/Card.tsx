@@ -1,34 +1,34 @@
-import React from "react";
-import {propsWine, winesType} from "../../models/models";
+import React, {FC} from "react";
+import {winesType} from "../../models/models";
 import {Link} from "react-router-dom";
 
+interface props {
+    wines: winesType
+}
 
-
-export const Card = (props: propsWine ) => {
-
+export const Card: FC<props> = ({wines} ) => {
 
     return(
-        <Link to={`/aboutWine/${props.item.id}`} className="cards">
+        <Link to={`/aboutWine/${wines.id}`} className="cards">
             <div className="cards__bg"
-            style={{background: `url("${props.item.image}") center/cover no-repeat`}}>
+            style={{background: `url("${wines.image}") center/cover no-repeat`}}>
                 <p className="cards__bg-text">
-                    {props.item.description}
+                    {wines.description}
                 </p>
             </div>
 
-
             <div className="cards__info">
                 <h2 className="cards__info-title">
-                    {props.item.name}
+                    {wines.name}
                 </h2>
 
                 <div className="cards__info-box">
                     <p className="cards__info-price">
-                        {props.item.price} KGS
+                        {wines.price} KGS
                     </p>
 
                     <p className="cards__info-price-btn">
-                        Подробнее
+                        More
                     </p>
                 </div>
             </div>
